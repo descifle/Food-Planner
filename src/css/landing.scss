@@ -1,0 +1,15 @@
+img {
+    width: 100%;
+}
+
+.landing {
+    background: linear-gradient(to top, rgba(80,68,18,0.6) 10%, transparent), url(../assets/healthy-eating.jpg) center/cover no-repeat border-box, #ff1b68;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
