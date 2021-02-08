@@ -1,18 +1,28 @@
-import { Container } from '@material-ui/core'
+import { Container, createMuiTheme, ThemeProvider } from '@material-ui/core'
 import React from 'react'
 import '../css/main.scss'
 import Header from './Header'
 import Landing from './Landing'
 
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#dddddd',
+            light: '#000000',
+            dark: '#eeeeee'
+        }
+    }
+})
+
 const App = () => {
     return (
-        <React.Fragment>
-            <Header />
+        <ThemeProvider theme={theme}>
+             <Header />
             <Landing />
             <Container>
                 yeeted
            </Container>
-        </React.Fragment>  
+        </ThemeProvider>
     )
 }
 export default App

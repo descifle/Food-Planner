@@ -8,7 +8,7 @@ const Landing = () => {
     return (
         <div className="landing">
             <Grid container justify="center" alignItems="center" spacing={3}>
-                <Grid className="text-center" item xs={8}>
+                <Grid className="text-center info-container" item xs={8}>
                     <h2>Fitness starts with what you eat.</h2>
                     <p>Take control of your health</p>
                 </Grid>
