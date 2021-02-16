@@ -12,7 +12,7 @@ const Header = () => {
     // console.log(props)
     return (
         <div className={classes.root}>
-            <AppBar color="inherit" position="static">
+            <AppBar style={{padding: '.7rem'}} position="static">
                 <Toolbar variant="dense">
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon />
@@ -20,8 +20,8 @@ const Header = () => {
                     <Typography variant="h4" color="inherit">
                         Food Planner
                     </Typography>
-                    <div style={{ marginLeft: 'auto' }}>
-                        <Button>Create Account</Button>
+                    <div className="justify-center auth" style={{ marginLeft: 'auto' }}>
+                        <Button style={{color: 'white', fontFamily: "'Quattrocento Sans', sans-serif", marginRight: '1rem', fontSize: '1.2rem'}} variant="text">Create Account</Button>
                         <GoogleAuth />
                     </div>
                 </Toolbar>

@@ -1,10 +1,19 @@
-img {
-    width: 100%;
+// font-family: 'Ovo', serif;
+//font-family: 'Quattrocento Sans', sans-serif;
+
+$main: #114B5F; $secondary: #1A936F;
+
+body {
+    letter-spacing: 1px;
 }
+
+// img {
+//     width: 100%;
+// }
 
 .landing {
     position: relative;
-    background: linear-gradient(to top, rgba(80,68,18,0.6) 10%, transparent), url(../assets/healthy-eating.jpg) center/cover no-repeat border-box, #ff1b68;
+    background: linear-gradient(to top, rgba(80,68,18,0.6) 10%, transparent), url(../assets/healthy-eating.jpg) center/cover no-repeat border-box, #C6DABF;
     height: 60vh;
     display: flex;
     justify-content: center;
@@ -19,8 +28,8 @@ img {
     height: 100%;
     top: 0;
     left: 0;
-    background-color: white;
-    opacity: 0.7;
+    background-color: #1A936F;
+    opacity: 0.2;
     transition: all 0.4s ease;
 }
 
@@ -29,9 +38,98 @@ img {
 // }
 
 .info-container {
+    position: relative;
+    width: 1300px;
+    top: -60px;
     z-index: 2;
+    font-family: 'Ovo', serif;
+    // background-color: #C6DABF;
+    color: white;
+    padding: 1rem;
+
+    h1 {
+        font-size: 5.3rem;
+        letter-spacing: 2px;
+        // font-family: open sans, sans-serif;
+    }
+
+    span {
+        font-family:'Quattrocento Sans', sans-serif !important;
+        font-size: 1.6rem;
+    }
 }
 
 .text-center {
     text-align: center;
+}
+
+.supercenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-border {
+    margin: 0 24px;
+    height: 1rem;
+    background-color: #ffdba6;
+    width: 1280px;
+    margin: auto;
+    margin-bottom: 5.4rem;
+}
+
+// .landing-content {
+//     background-color: black;
+// }
+
+.landing-content_main {
+    font-family: 'Quattrocento Sans', sans-serif;
+    text-align: right;
+
+    h2 {
+        width: 100%;
+        letter-spacing: 3px;
+        font-size: 3.6rem;
+        font-family: 'Ovo', serif; 
+        margin: 1rem 0;
+    }
+
+    p { 
+        line-height: 1.6;
+        font-size: 1.6rem;
+        margin: 1rem 0;
+    }
+
+    span {
+        color: $main;
+        font-weight: bold;
+        font-size: 1.6rem;
+        margin-left: auto;
+    }
+}
+
+.landing-content_secondary {
+    font-family: 'Quattrocento Sans', sans-serif;
+    text-align: left;
+
+    h2 {
+        width: 100%;
+        letter-spacing: 3px;
+        font-size: 3.6rem;
+        font-family: 'Ovo', serif;
+        margin: 1rem 0;
+    }
+
+    p { 
+        line-height: 1.6;
+        font-size: 1.6rem;
+        margin: 1rem 0;
+    }
+
+    span {
+        color: $main;
+        font-weight: bold;
+        font-size: 1.6rem;
+        margin-right: auto;
+    }
 }

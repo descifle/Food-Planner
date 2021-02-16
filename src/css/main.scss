@@ -1,3 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Ovo&family=Quattrocento+Sans&display=swap');
+// font-family: 'Ovo', serif;
+// font-family: 'Quattrocento Sans', sans-serif;
+
+$main: #114B5F; $secondary: #1A936F;
+
 body {
     margin: 0;
+}
+
+// .auth {
+//     font-size: 1.6rem;
+// }
+
+#root {
+    overflow-x: hidden;
+}
+
+.footer-inner {
+    background-color: $main;
+}
+
+.footer-inner_nav {
+    display: inline-block;
+    
+    li {
+        display: inline-block;
+    }
+
+    a {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-family: ShopifySans, Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 1em;
+        margin-right: 1em;
+        color: #ffffff;
+        display: inline-block;
+    }
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
 }

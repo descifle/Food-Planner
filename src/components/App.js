@@ -1,19 +1,20 @@
-import { Container, createMuiTheme, ThemeProvider } from '@material-ui/core'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
 import React from 'react'
 import '../css/main.scss'
+import Footer from './Footer'
 import Header from './Header'
 import Landing from './Landing'
 
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#dddddd',
+            main: '#114B5F',
             light: '#000000',
             dark: '#eeeeee'
         },
         secondary: {
-            main: '#000000'
+            main: '#1A936F'
         }
     }
 })
@@ -25,11 +26,11 @@ const App = () => {
     console.log(myTheme)
     return (
         <ThemeProvider theme={theme}>
-             <Header />
+            <Header />
+            <main>
             <Landing />
-            <Container>
-                yeeted
-           </Container>
+            </main>
+            <Footer />
         </ThemeProvider>
     )
 }
