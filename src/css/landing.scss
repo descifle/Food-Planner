@@ -43,19 +43,18 @@ body {
     top: -60px;
     z-index: 2;
     font-family: 'Ovo', serif;
-    // background-color: #C6DABF;
     color: white;
     padding: 1rem;
 
     h1 {
-        font-size: 5.3rem;
+        font-size: 2rem;
         letter-spacing: 2px;
         // font-family: open sans, sans-serif;
     }
 
     span {
         font-family:'Quattrocento Sans', sans-serif !important;
-        font-size: 1.6rem;
+        font-size: 1rem;
     }
 }
 
@@ -67,6 +66,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .hero-border {
@@ -78,58 +78,168 @@ body {
     margin-bottom: 5.4rem;
 }
 
-// .landing-content {
-//     background-color: black;
-// }
+.landing-content {
+    margin-bottom: 4rem;
+}
+
+.landing-content_container {
+    margin: 1.8rem 0;
+}
 
 .landing-content_main {
     font-family: 'Quattrocento Sans', sans-serif;
-    text-align: right;
+    display: block;
+    text-align: left;
+    margin-bottom: 1rem !important;
 
     h2 {
         width: 100%;
-        letter-spacing: 3px;
-        font-size: 3.6rem;
+        font-size: 2rem;
         font-family: 'Ovo', serif; 
         margin: 1rem 0;
     }
 
     p { 
-        line-height: 1.6;
-        font-size: 1.6rem;
+        line-height: 1.2;
+        font-size: 1.2rem;
         margin: 1rem 0;
     }
 
     span {
         color: $main;
         font-weight: bold;
-        font-size: 1.6rem;
+        font-size: 1.3rem;
         margin-left: auto;
+    }
+}
+
+.landing-content-img {
+    display: flex;
+    justify-content: center;
+    order: 2;
+
+    img {
+        width: 80%;
     }
 }
 
 .landing-content_secondary {
     font-family: 'Quattrocento Sans', sans-serif;
     text-align: left;
+    margin-bottom: 2rem !important;
 
     h2 {
         width: 100%;
-        letter-spacing: 3px;
-        font-size: 3.6rem;
+        font-size: 2rem;
         font-family: 'Ovo', serif;
         margin: 1rem 0;
     }
 
     p { 
-        line-height: 1.6;
-        font-size: 1.6rem;
+        line-height: 1.2;
+        font-size: 1.2rem;
         margin: 1rem 0;
     }
 
     span {
         color: $main;
         font-weight: bold;
-        font-size: 1.6rem;
+        font-size: 1.3rem;
         margin-right: auto;
+    }
+}
+
+@media (min-width: 40rem) {
+    .info-container {
+        position: relative;
+        width: 1300px;
+        top: -60px;
+        z-index: 2;
+        font-family: 'Ovo', serif;
+        color: white;
+        padding: 1rem;
+    
+        h1 {
+            font-size: 5.3rem;
+            letter-spacing: 2px;
+        }
+        
+        .info-cta {
+            margin-right: 1.4rem;
+        }
+    
+        span {
+            font-family:'Quattrocento Sans', sans-serif !important;
+            font-size: 1.6rem;
+        }
+    }
+
+    .supercenter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .landing-content_main {
+        font-family: 'Quattrocento Sans', sans-serif;
+        text-align: right;
+        margin-bottom: 2rem !important;
+    
+        h2 {
+            width: 100%;
+            font-size: 3rem;
+            font-family: 'Ovo', serif; 
+            margin: 1rem 0;
+        }
+    
+        p { 
+            line-height: 1.2;
+            font-size: 1.4rem;
+            margin: 1rem 0;
+        }
+    
+        span {
+            color: $main;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-left: auto;
+        }
+    }
+    
+    .landing-content_secondary {
+        font-family: 'Quattrocento Sans', sans-serif;
+        text-align: left;
+        margin-bottom: 2rem !important;
+    
+        h2 {
+            width: 100%;
+            font-size: 3rem;
+            font-family: 'Ovo', serif;
+            margin: 1rem 0;
+        }
+    
+        p { 
+            line-height: 1.2;
+            font-size: 1.6rem;
+            margin: 1rem 0;
+        }
+    
+        span {
+            color: $main;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-right: auto;
+        }
+    }
+
+    .landing-content-img {
+        display: flex;
+        justify-content: center;
+        order: initial;
+    
+        img {
+            width: 80%;
+        }
     }
 }

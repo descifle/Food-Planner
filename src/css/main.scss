@@ -16,12 +16,25 @@ body {
     overflow-x: hidden;
 }
 
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .footer-inner {
     background-color: $main;
+    padding: 2rem 4rem !important;
+
+    hr {
+        // color: #ffdba6;
+        border: #ffdba6 solid 1px;
+    }
 }
 
 .footer-inner_nav {
     display: inline-block;
+    padding: 0;
     
     li {
         display: inline-block;
@@ -37,6 +50,14 @@ body {
         color: #ffffff;
         display: inline-block;
     }
+}
+
+.icon {
+    color: white;
+}
+
+.footer-inner_nav-container {
+    padding: 1rem 3rem;
 }
 
 a {
