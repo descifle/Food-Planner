@@ -1,10 +1,12 @@
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React from 'react'
 import '../css/main.scss'
 import Footer from './Footer'
 import Header from './Header'
 import Landing from './Landing'
+import FoodPlanner from './FoodPlanner'
 
 const theme = createMuiTheme({
     palette: {
@@ -26,12 +28,18 @@ const App = () => {
     console.log(myTheme)
     return (
         <ThemeProvider theme={theme}>
-            <Header />
-            <main>
-            <Landing />
-            </main>
-            <Footer />
+            <Router>
+                <Header />
+                <main>
+                    <Switch>
+                        <Route name="landing" path="/" exact component={Landing} />
+                        <Route name="food-planner" path="/food-planner" component={FoodPlanner} />
+                    </Switch>
+                </main>
+                <Footer />
+            </Router>
         </ThemeProvider>
     )
 }
+
 export default App
