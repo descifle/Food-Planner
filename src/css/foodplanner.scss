@@ -1,0 +1,17 @@
+.m-placeholder {
+    margin: 2rem 0;
+}
+
+.daily-info {
+    padding-top: 2rem;
+}
+
+.quick-links {
+    padding: 2rem 0;
+}
+
+@media(min-width: 40rem) {
+    .daily-info {
+        padding: 2rem 2rem 2rem 0rem;
+    }
+}

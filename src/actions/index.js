@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT } from './types'
+import { SIGN_IN, SIGN_OUT, SCREEN_SIZE } from './types'
 
 export const signIn = user => {
     return {
@@ -10,5 +10,11 @@ export const signIn = user => {
 export const signOut = () => {
     return {
         type: SIGN_OUT
+    }
+}
+
+export const getScreenSize = () => {
+    return {
+        type: SCREEN_SIZE
     }
 }

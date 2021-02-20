@@ -1,7 +1,9 @@
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
-import { useTheme } from '@material-ui/core/styles'
+// import { useTheme } from '@material-ui/core/styles'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React from 'react'
+import { getScreenSize } from '../actions/index'
+import { connect } from 'react-redux'
 import '../css/main.scss'
 import Footer from './Footer'
 import Header from './Header'
@@ -21,11 +23,12 @@ const theme = createMuiTheme({
     }
 })
 
-const App = () => {
+const App = (props) => {
 
-    const myTheme = useTheme()
+    // const myTheme = useTheme()
+    console.log(props)
 
-    console.log(myTheme)
+    console.log(theme)
     return (
         <ThemeProvider theme={theme}>
             <Router>
@@ -42,4 +45,10 @@ const App = () => {
     )
 }
 
-export default App
+const mapStateToProps = (state) => {
+    return {
+        screenSize: state.screenSize
+    }
+}
+
+export default connect(mapStateToProps, { getScreenSize })(App)
