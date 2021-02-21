@@ -13,8 +13,9 @@ export const signOut = () => {
     }
 }
 
-export const getScreenSize = () => {
+export const getScreenSize = screenSize => {
     return {
-        type: SCREEN_SIZE
+        type: SCREEN_SIZE,
+        payload: screenSize
     }
 }

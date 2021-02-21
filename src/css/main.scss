@@ -9,9 +9,10 @@ body {
     background-color: $background;
 }
 
-// .auth {
-//     font-size: 1.6rem;
-// }
+.auth {
+    font-size: .9rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
 
 #root {
     overflow-x: hidden;
@@ -21,6 +22,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.text-center {
+   text-align: center;
 }
 
 .footer-inner {
@@ -63,5 +68,13 @@ body {
 
 a {
     text-decoration: none;
+    color: white;
     cursor: pointer;
+}
+
+@media(min-width: 40rem) {
+    .auth {
+        font-size: 1.2rem;
+        font-family: "Quattrocento Sans", sans-serif;
+    }
 }

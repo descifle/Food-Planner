@@ -23,7 +23,9 @@ const Landing = () => {
                         <h1 variant="h1">Fitness starts with what you eat.</h1>
                         <div className="supercenter">
                             <Typography className="info-cta" style={{ fontFamily: "'Quattrocento Sans', sans-serif", textTransform: "initial" }} variant="button">Take control of your health.</Typography>
-                            <Button style={{ color: 'white', border: 'white solid 1px', backgroundColor: 'rgba(186, 181, 181, 0.3)' }} variant="outlined">Create Account</Button>
+                            <Button style={{ color: 'white', border: 'white solid 1px', backgroundColor: 'rgba(186, 181, 181, 0.3)' }} variant="outlined">
+                                Create Account
+                            </Button>
                         </div>
                     </div>
                 </Grid>
@@ -34,7 +36,7 @@ const Landing = () => {
                 <Grid container justify="center" alignItems="center">
                     <Grid className="landing-content_container" container justify="center" alignItems="center">
                         <Grid className="landing-content_main" item xs={12} sm={5} >
-                            <h2>Diet</h2>
+                            <h2>Track</h2>
                             <p>
                                 consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                         </p>
@@ -49,7 +51,7 @@ const Landing = () => {
                             <img src="https://via.placeholder.com/150" alt="" />
                         </Grid>
                         <Grid className="landing-content_secondary" item xs={12} sm={5} >
-                            <h2>Lorem  <br />ipsum dolor sit.</h2>
+                            <h2>Manage</h2>
                             <p>
                                 consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                         </p>
@@ -58,7 +60,7 @@ const Landing = () => {
                     </Grid>
                     <Grid className="landing-content_container" container justify="center" alignItems="center">
                         <Grid className="landing-content_main" item xs={12} sm={5}>
-                            <h2>Lorem  <br />ipsum dolor sit.</h2>
+                            <h2>Diet</h2>
                             <p>
                                 consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                         </p>
