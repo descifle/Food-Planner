@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid, Container, Typography, Card, CardActions, CardContent, Button, IconButton } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import AppsIcon from '@material-ui/icons/Apps';
@@ -12,15 +12,57 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import SearchIcon from '@material-ui/icons/Search';
 import DeleteIcon from '@material-ui/icons/Delete';
 import '../css/foodplanner.scss'
+import Header from './Header';
+import Footer from './Footer';
+import axios from 'axios'
+import Modal from './Modal'
 
 const FoodPlanner = () => {
+
+    const baseURL = 'http://localhost:3001'
+
+    const [open, setOpen] = React.useState(true)
+        
+    const addFood = (data) => {
+        axios.post(`${baseURL}/add-food`, data)
+    }
+    const updateFood = (data) => {
+        axios.patch(`${baseURL}/update-food`, data)
+    }
+    const deleteFood = () => {
+        axios.post(`${baseURL}/remove-food`, {
+            foodobject:'foodobject'
+        })
+    }
+    const viewFood = () => {
+        'some redux function'
+    }
+
+    const handleClick = () => {
+        setOpen(true)
+      };
+    
+    const handleModalClose = () => {
+        setOpen(false)
+    }
+
+    const handleSubmit = (data) => {
+        console.log(data)
+        updateFood(data)
+    }
+ 
     return (
-        <Container>
+        <React.Fragment>
+            <Header />
+            <Container>
+            <Modal modalOpen={open} modalClose={handleModalClose} handleSubmit={handleSubmit} />
             <Grid container>
                 <Grid style={{ paddingTop: '2rem' }} item xs={12} sm={12}>
                     <Card>
                        <CardContent>
-                        <span >welcome back (user)</span>
+                        <span onClick={handleClick} >
+                            welcome back (user)
+                        </span>
                         <span style={{ marginLeft: '2rem'}}>daily streak (some number)</span>
                         <span style={{ marginLeft: '2rem'}}>lorem ipsum</span>
                         <span style={{ marginLeft: '2rem'}}><Link style={{ color: 'inherit' }} to="/manage-account">Manage Account</Link></span>
@@ -108,7 +150,7 @@ const FoodPlanner = () => {
                                Manage Foods
                             </Typography>
                             <div>
-                                <IconButton><AddBoxIcon />add food</IconButton>
+                                <IconButton  ><AddBoxIcon />add food</IconButton>
                                 <IconButton><AddToPhotosIcon />update food</IconButton>
                                 <IconButton><VisibilityIcon />View Foods</IconButton>
                                 <IconButton><SearchIcon />Search Foods</IconButton>
@@ -118,12 +160,16 @@ const FoodPlanner = () => {
                     </Card>
                 </Grid>
             </Grid>
+            {/* {renderFoodForm()} */}
             <div>your progress</div>
             <div>foods</div>
             <div>some other thing</div>
             <div>that other thing</div>
             <div>one more thing</div>
+            
         </Container>
+        <Footer />
+        </React.Fragment>
     )
 }
 

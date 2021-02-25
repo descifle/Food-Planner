@@ -3,6 +3,9 @@ import React from 'react'
 // import mobileBanner from '../assets/mobile-healthy.jpg'
 import '../css/landing.scss'
 import { Grid, Container, Typography, Button } from '@material-ui/core'
+import { Link } from 'react-router-dom'
+import Header from './Header'
+import Footer from './Footer'
 // import { makeStyles } from '@material-ui/core/styles'
 
 // const useStyles = makeStyles((theme) => ({
@@ -17,6 +20,7 @@ import { Grid, Container, Typography, Button } from '@material-ui/core'
 const Landing = () => {
     return (
         <React.Fragment>
+            <Header />
             <div className="landing">
                 <Grid container justify="center" alignItems="center" spacing={3}>
                     <div className="text-center info-container">
@@ -24,7 +28,7 @@ const Landing = () => {
                         <div className="supercenter">
                             <Typography className="info-cta" style={{ fontFamily: "'Quattrocento Sans', sans-serif", textTransform: "initial" }} variant="button">Take control of your health.</Typography>
                             <Button style={{ color: 'white', border: 'white solid 1px', backgroundColor: 'rgba(186, 181, 181, 0.3)' }} variant="outlined">
-                                Create Account
+                                <Link to="food-planner">Create Account</Link>
                             </Button>
                         </div>
                     </div>
@@ -72,6 +76,7 @@ const Landing = () => {
                     </Grid>
                 </Grid>
             </Container>
+            <Footer />
         </React.Fragment>
     )
 }

@@ -13,9 +13,12 @@ const Header = ({ screenSize }) => {
 
     const classes = useStyles()
 
+    // create a popper for when sign in is clicked to have google sign in and regular sign in
+
     const renderHeader = () => {
-        if(screenSize.height < 800) {
+        if(screenSize.width < 800) {
             return (
+                // mobile view
                 <div className={classes.root}>
                     <AppBar style={{padding: '.7rem 0'}} position="static">
                         <Toolbar variant="dense">
@@ -24,7 +27,7 @@ const Header = ({ screenSize }) => {
                             </IconButton>
                             <Link to="/"><img src={logo} alt="logo" /></Link>
                             <div className="text-center auth" style={{ marginLeft: 'auto' }}>
-                                <Button style={{color: 'white', fontFamily: "inherit", fontSize: 'inherit'}} variant="text"><Link to="/food-planner">Create Account</Link></Button>
+                                <Button style={{color: 'white', fontFamily: "inherit", fontSize: 'inherit'}} variant="text"><Link to="/create-account">Create Account</Link></Button>
                                 <GoogleAuth />
                             </div>
                         </Toolbar>
@@ -33,19 +36,21 @@ const Header = ({ screenSize }) => {
             )
         } else {
             return (
+                // desktop view
                 <div className={classes.root}>
                     <AppBar style={{padding: '.7rem'}} position="static">
                         <Toolbar variant="dense">
                             {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                                 <MenuIcon />
                             </IconButton> */}
-                            <Typography variant="h4" color="inherit">
                             <Link to="/"><img src={logo} alt="logo" /></Link>
-                                {/* Food Planner */}
+                            <Typography variant="h4" color="inherit">
+                               <Link style={{ fontFamily: "'Quattrocento Sans', sans-serif", marginLeft: '.5rem' }} to="/"> Food Planner</Link>
                             </Typography>
+                            
                             <div className="text-center auth" style={{ marginLeft: 'auto' }}>
                                 <Button style={{color: 'white', fontFamily: "'Quattrocento Sans', sans-serif", fontSize: '1.2rem'}} variant="text">
-                                    <Link to="/food-planner">Create Account</Link>
+                                    <Link to="/create-account">Create Account</Link>
                                 </Button>
                                 <GoogleAuth />
                             </div>

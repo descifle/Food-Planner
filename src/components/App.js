@@ -5,11 +5,10 @@ import React, { useEffect } from 'react'
 import { getScreenSize } from '../actions/index'
 import { connect } from 'react-redux'
 import '../css/main.scss'
-import Footer from './Footer'
-import Header from './Header'
 import Landing from './Landing'
 import FoodPlanner from './FoodPlanner'
 import AccountManage from './AccountManage'
+import CreateAccount from '../components/auth/CreateAccount'
 
 const theme = createMuiTheme({
     palette: {
@@ -35,7 +34,7 @@ const theme = createMuiTheme({
 
 
 
-const App = ({ getScreenSize, screenSize }) => {
+const App = ({ getScreenSize }) => {
 
     const getWindowSize = () => {
         const { innerWidth: width, innerHeight: height } = window
@@ -56,15 +55,14 @@ const App = ({ getScreenSize, screenSize }) => {
     return (
         <ThemeProvider theme={theme}>
             <Router>
-                <Header />
                 <main>
                     <Switch>
                         <Route name="landing" path="/" exact component={Landing} />
                         <Route name="food-planner" path="/food-planner" component={FoodPlanner} />
                         <Route name="manage-account" path="/manage-account" component={AccountManage} />
+                        <Route name="create-account" path="/create-account" component={CreateAccount} />
                     </Switch>
                 </main>
-                <Footer />
             </Router>
         </ThemeProvider>
     )
