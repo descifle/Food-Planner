@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 const screenSizeReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case SCREEN_SIZE:
-            return { screenSize:action.payload }
+            return action.payload
         default:
             return state
     }

@@ -1,3 +1,6 @@
 export const SIGN_IN = 'SIGN_IN'
+export const RSIGN_IN = 'RSIGN_IN'
 export const SIGN_OUT = 'SIGN_OUT'
+export const RSIGN_OUT = 'RSIGN_OUT'
 export const SCREEN_SIZE = 'SCREEN_SIZE'
+export const FOODS = 'FOODS'

@@ -117,6 +117,15 @@ font-family: 'Quattrocento Sans', sans-serif;
     padding: 1rem;
 }
 
+.user-foods {
+    width: 400px;
+    background-color: white;
+}
+
+.food-item {
+    width: 100%
+}
+
 @media(min-width: 40rem) {
     .auth {
         font-size: 1.2rem;
