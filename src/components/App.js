@@ -9,6 +9,7 @@ import Landing from './Landing'
 import FoodPlanner from './FoodPlanner'
 import AccountManage from './AccountManage'
 import CreateAccount from '../components/auth/CreateAccount'
+import SignIn from './auth/SignIn'
 
 const theme = createMuiTheme({
     palette: {
@@ -23,9 +24,9 @@ const theme = createMuiTheme({
     },
     typography: {
         h2: {
-            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontFamily: "font-family: 'Ovo', serif; ",
             fontSize: "3.25rem",
-            fontWeight: 400,
+            fontWeight: 'bold',
             letterSpacing: "-0.00833em",
             lineHeight: 1.2
         }
@@ -42,6 +43,7 @@ const App = ({ getScreenSize }) => {
     }
 
     useEffect(() => {
+        // REMOVE THIS WHEN GOING PRODUCTION RESIZING IS CLAPPING RESOURCES
         const handleResize = () => getScreenSize(getWindowSize())
 
         getScreenSize(getWindowSize())
@@ -61,6 +63,7 @@ const App = ({ getScreenSize }) => {
                         <Route name="food-planner" path="/food-planner" component={FoodPlanner} />
                         <Route name="manage-account" path="/manage-account" component={AccountManage} />
                         <Route name="create-account" path="/create-account" component={CreateAccount} />
+                        <Route name="login" path="/login" component={SignIn} />
                     </Switch>
                 </main>
             </Router>

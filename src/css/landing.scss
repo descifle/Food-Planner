@@ -84,6 +84,7 @@ body {
 
 .landing-content_container {
     margin: 1.8rem 0;
+    padding: 2rem 0;
 }
 
 .landing-content_main {
@@ -105,7 +106,7 @@ body {
         margin: 1rem 0;
     }
 
-    span {
+    a {
         color: $main;
         font-weight: bold;
         font-size: 1.3rem;
@@ -141,7 +142,7 @@ body {
         margin: 1rem 0;
     }
 
-    span {
+    a {
         color: $main;
         font-weight: bold;
         font-size: 1.3rem;

@@ -6,6 +6,9 @@ import { Grid, Container, Typography, Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
+import trackImage from '../assets/food-planner-img.jpeg'
+import manageImage from '../assets/Should-You-Be-Counting-Calories.jpg'
+import dietImage from '../assets/foodiebalance.jpg'
 // import { makeStyles } from '@material-ui/core/styles'
 
 // const useStyles = makeStyles((theme) => ({
@@ -28,7 +31,7 @@ const Landing = () => {
                         <div className="supercenter">
                             <Typography className="info-cta" style={{ fontFamily: "'Quattrocento Sans', sans-serif", textTransform: "initial" }} variant="button">Take control of your health.</Typography>
                             <Button style={{ color: 'white', border: 'white solid 1px', backgroundColor: 'rgba(186, 181, 181, 0.3)' }} variant="outlined">
-                                <Link to="food-planner">Create Account</Link>
+                                <Link to="/create-account">Create Account</Link>
                             </Button>
                         </div>
                     </div>
@@ -40,38 +43,38 @@ const Landing = () => {
                 <Grid container justify="center" alignItems="center">
                     <Grid className="landing-content_container" container justify="center" alignItems="center">
                         <Grid className="landing-content_main" item xs={12} sm={5} >
-                            <h2>Track</h2>
+                            <Typography variant="h2">Track</Typography>
                             <p>
-                                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                                Your eating habits, <br/>Identify weight loss roadblocks 
                         </p>
-                            <span>link to info</span>
+                            <span><Link to="/create-account">join now</Link></span>
                         </Grid>
                         <Grid className="landing-content-img" item xs={12} sm={5} >
-                            <img src="https://via.placeholder.com/150" alt="" />
+                            <img src={trackImage} alt="" />
                         </Grid>
                     </Grid>
                     <Grid className="landing-content_container" container justify="center" alignItems="center">
                         <Grid className="landing-content-img" item xs={12} sm={5} >
-                            <img src="https://via.placeholder.com/150" alt="" />
+                            <img src={manageImage} alt="" />
                         </Grid>
                         <Grid className="landing-content_secondary" item xs={12} sm={5} >
-                            <h2>Manage</h2>
+                        <Typography variant="h2">Manage</Typography>
                             <p>
-                                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                                journal your caloric intake, helps avoid high caloric foods 
                         </p>
-                            <span>link to info</span>
+                            <span><Link to="/create-account">join now</Link></span>
                         </Grid>
                     </Grid>
                     <Grid className="landing-content_container" container justify="center" alignItems="center">
                         <Grid className="landing-content_main" item xs={12} sm={5}>
-                            <h2>Diet</h2>
+                            <Typography variant="h2">Diet</Typography>
                             <p>
-                                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                               when you properly manage and track what you eat, it helps you create a more balanced Diet
                         </p>
-                            <span>link to info</span>
+                            <span><Link to="/create-account">join now</Link></span>
                         </Grid>
                         <Grid className="landing-content-img" item xs={12} sm={5} >
-                            <img src="https://via.placeholder.com/150" alt="" />
+                            <img src={dietImage} alt="" />
                         </Grid>
                     </Grid>
                 </Grid>

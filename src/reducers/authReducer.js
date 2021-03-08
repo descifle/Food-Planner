@@ -14,6 +14,8 @@ const authReducer = (state = INITIAL_STATE, action) => {
         case RSIGN_IN:
             return { ...state, isNormalSignedIn: true, rUser:action.payload}
         case SIGN_OUT:
+            localStorage.removeItem('malfeaseg')
+            localStorage.removeItem('malfease1')
             return { ...state, isSignedIn: false, user:null }
         case RSIGN_OUT:
             localStorage.removeItem('malfease')

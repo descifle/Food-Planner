@@ -15,7 +15,7 @@ const Header = ({ screenSize, malfease }) => {
 
     // create a popper for when sign in is clicked to have google sign in and regular sign in
     const renderAuth = () => {
-        console.log(malfease)
+        // console.log(malfease)
         if(malfease.isNormalSignedIn === true || malfease.isSignedIn === true) {
             return (
                 <React.Fragment>
@@ -26,14 +26,23 @@ const Header = ({ screenSize, malfease }) => {
             return (
                 <React.Fragment>
                     <Button style={{color: 'white', fontFamily: "inherit", fontSize: 'inherit'}} variant="text"><Link to="/create-account">Create Account</Link></Button>
-                    <GoogleAuth />
+                    <Link to="/login">
+                    <Button color="inherit" variant="outlined" style={{fontFamily: "inherit", fontSize: 'inherit'}} >
+                    Sign In
+                    </Button>
+                    </Link>
                 </React.Fragment>
             )
         } else {
             return (
                 <React.Fragment>
                     <Button style={{color: 'white', fontFamily: "inherit", fontSize: 'inherit'}} variant="text"><Link to="/create-account">Create Account</Link></Button>
-                    <GoogleAuth />
+                    <Link to="/login">
+                        <Button color="inherit" variant="outlined" style={{fontFamily: "inherit", fontSize: 'inherit'}} >
+                        Sign In
+                        </Button>
+                    </Link>
+                    
                 </React.Fragment>
             )
         }
@@ -46,9 +55,9 @@ const Header = ({ screenSize, malfease }) => {
                 <div className={classes.root}>
                     <AppBar style={{padding: '.7rem 0'}} position="static">
                         <Toolbar variant="dense">
-                            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                            {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                                 <MenuIcon fontSize="large" />
-                            </IconButton>
+                            </IconButton> */}
                             <Link to="/"><img src={logo} alt="logo" /></Link>
                             <div className="text-center auth" style={{ marginLeft: 'auto' }}>
                             {renderAuth()}
@@ -90,7 +99,6 @@ const Header = ({ screenSize, malfease }) => {
             )
         }
     }
-    console.log(malfease)
     
     return renderHeader()
 }

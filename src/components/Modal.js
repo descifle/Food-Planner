@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Modal, FormControl, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core'
+import { Modal, FormControl, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core'
+import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const MyModal = ({modalOpen, modalClose, handleSubmit, action, foods}) => {
@@ -10,14 +11,25 @@ const MyModal = ({modalOpen, modalClose, handleSubmit, action, foods}) => {
   const goSubmit = (e) => {
     e.preventDefault()
     handleSubmit({food: food, calories: calories})
+    setFood('')
+    setCalories(0)
+    modalClose(action)
   }
 
   const handleModalClose = () => {
+    setFood('')
+    setCalories(0)
     modalClose(action)
+  }
+
+  const handleUpdate = (id) => {
+    // onclick from modal, in typical submit format have the view foods view and allow it to be update somehow?
+    handleSubmit(id)
   }
 
   const handleRemove = (id) => {
     handleSubmit(id)
+    modalClose(action)
   }
  
   const renderFoods = () => {
@@ -35,9 +47,15 @@ const MyModal = ({modalOpen, modalClose, handleSubmit, action, foods}) => {
                   {food.title}
                 </TableCell>
                 <TableCell align="right">{food.calories}</TableCell>
-                <TableCell align="right">created at</TableCell>
-                <TableCell align="right">updated at</TableCell>
-                {action === 'remove-food' ? <TableCell align="right"><DeleteIcon onClick={() => handleRemove(food)} /></TableCell> : null}
+                <TableCell align="right">created</TableCell>
+                {
+                  action === 'update-food' ? <TableCell align="right"><AddToPhotosIcon onClick={() => handleUpdate(food)} /></TableCell> :
+                  <TableCell align="right">updated</TableCell>
+                }
+                {action === 'remove-food' ? 
+                <TableCell align="right"><Button onClick={() => handleRemove(food)}>Remove<DeleteIcon /></Button></TableCell> : 
+                null
+                }
               </TableRow>
         )
       } else {
@@ -47,19 +65,20 @@ const MyModal = ({modalOpen, modalClose, handleSubmit, action, foods}) => {
   }
 
   const renderModalBody = () => {
-    if(action === 'view-food' || action === 'remove-food') {
+    if(action !== 'add-food') {
       return (
         <div className="form-container_modal">
-          {/* <div>total Calories : {foods[0].allCalories}</div> */}
-          <Paper>total Calories : {foods[0].allCalories}</Paper>
           <TableContainer component={Paper}>
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell>Your Foods</TableCell>
                   <TableCell align="right">Calories</TableCell>
-                  <TableCell align="right">Created At</TableCell>
-                  <TableCell align="right">Updated At</TableCell>
+                  <TableCell align="right">Created</TableCell>
+                  {
+                    action === "update-food" ? <TableCell align="right">update</TableCell> :
+                    <TableCell align="right">Updated</TableCell>
+                  }
                 </TableRow>
               </TableHead>
               <TableBody>

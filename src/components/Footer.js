@@ -7,45 +7,37 @@ const Footer = () => {
         <footer>
             <Container className="footer-inner">
                 <div>
-                    <nav>
+                <Typography variant="h3" style={{ color: 'white'}}>SITEMAP</Typography>
+                    {/* <nav>
                         <ul className="footer-inner_nav">
-                            <li><a href="#something">About</a></li>
-                            <li><a href="#something">Lorem Ipsum</a></li>
-                            <li><a href="#somethign">Sitemap</a></li>
+                            <li></li>
                         </ul>
-                    </nav>
+                    </nav> */}
                 </div>
                 <hr />
                 <Grid container >
                     <Grid item xs={12} sm={3}>
-                        <Typography variant="h4">Lorem</Typography>
-                        <Typography>ipsum</Typography>
-                        <Typography>ipsum</Typography>
-                        <Typography>ipsum</Typography>
-                        <Typography>ipsum</Typography>
+                        <Typography variant="h4"></Typography>
+                        <h4>Food Planner</h4>
+                        <Typography>about</Typography>
+                        <Typography>our vision</Typography>
                     </Grid>
                     <Grid item xs={12} sm={3}>
-                        <Typography variant="h4">Lorem</Typography>
-                        <Typography>ipsum</Typography>
-                        <Typography>ipsum</Typography>
-                        <Typography>ipsum</Typography>
-                        <Typography>ipsum</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={3}>
-                        <Typography variant="h4">Lorem</Typography>
-                        <Typography>ipsum</Typography>
-                        <Typography>ipsum</Typography>
-                        <Typography>ipsum</Typography>
-                        <Typography>ipsum</Typography>
+                        <Typography variant="h4"></Typography>
+                        <h4>Account</h4>
+                        <Typography>create</Typography>
+                        <Typography>manage</Typography>
+                        <Typography>delete data</Typography>
+                        <Typography>your information</Typography>
                     </Grid>
                 </Grid>
                 <hr />
                 <div className="flex-between">
                     <span className="flex-between">
-                        <Facebook className="icon" />
-                        <LinkedIn className="icon" />
+                        <a href="https://www.facebook.com"><Facebook className="icon" /></a>
+                        <a href="https://www.linkedIn.com"><LinkedIn className="icon" /></a>
                     </span> 
-                    <span><span>Terms of Service</span> <span>Privacy Policy</span> <span>Descifle &#8482;</span>privacy policy etc</span>
+                    <div><span>Terms of Service</span> <span>Privacy Policy</span> <span>Descifle&#8482; </span><span>privacy policy etc</span></div>
                 </div>
             </Container>
         </footer>
