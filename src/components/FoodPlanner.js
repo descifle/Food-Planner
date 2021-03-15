@@ -3,16 +3,10 @@ import { connect } from 'react-redux'
 import { getFoods } from '../actions'
 import { Grid, Container, Typography, Card, CardActions, CardContent, Button, IconButton } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import { signIn, rSignIn } from '../actions'
-// import AppsIcon from '@material-ui/icons/Apps';
-// import FastfoodIcon from '@material-ui/icons/Fastfood';
-// import ViewListIcon from '@material-ui/icons/ViewList';
-// import HistoryIcon from '@material-ui/icons/History';
-// import InfoIcon from '@material-ui/icons/Info';
+import { rSignIn } from '../actions'
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-// import SearchIcon from '@material-ui/icons/Search';
 import DeleteIcon from '@material-ui/icons/Delete';
 import '../css/foodplanner.scss'
 import Header from './Header';
@@ -152,11 +146,10 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
                         <Grid style={{ paddingTop: '2rem' }} item xs={12} sm={12}>
                             <Card>
                             <CardContent>
-                                <span >
+                                <div style={{ marginLeft: 'auto'}}>
                                     welcome back {user.userName}
-                                </span>
-                                <span style={{ marginLeft: '2rem'}}>daily streak (some number)</span>
-                                <span style={{ marginLeft: '2rem'}}><Link style={{ color: 'inherit' }} to="/manage-account">Manage Account</Link></span>
+                                </div>
+                                <Button variant="outlined" ><Link style={{ color: 'inherit' }} to="/manage-account">Manage Account</Link></Button>
                             </CardContent>
                             </Card>
                             
@@ -190,13 +183,13 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
                                         </Typography>
                                         <div>
                                             <Modal modalOpen={addOpen} modalClose={handleModalClose} handleSubmit={addFood} action={'add-food'} />
-                                            <IconButton  onClick={() => handleClick('add-food')}><AddBoxIcon />Add food</IconButton>
+                                            <IconButton  style={{color: 'green'}} onClick={() => handleClick('add-food')}><AddBoxIcon />Add food</IconButton>
                                             <Modal modalOpen={updateOpen} modalClose={handleModalClose} handleSubmit={updateFood} action={'update-food'} foods={foods} />
-                                            <IconButton onClick={() => handleClick('update-food')}><AddToPhotosIcon />Update food</IconButton>
+                                            <IconButton style={{color: 'orange'}} onClick={() => handleClick('update-food')}><AddToPhotosIcon />Update food</IconButton>
                                             <Modal modalOpen={viewOpen} modalClose={handleModalClose} action={'view-food'} foods={foods} />
                                             <IconButton onClick={viewFoods}><VisibilityIcon />View Foods</IconButton>
                                             <Modal modalOpen={removeOpen} modalClose={handleModalClose} handleSubmit={removeFood} action={'remove-food'} foods={foods}/>
-                                            <IconButton onClick={() => handleClick('remove-food')}><DeleteIcon />Remove foods</IconButton>
+                                            <IconButton style={{color: 'red'}} onClick={() => handleClick('remove-food')}><DeleteIcon />Remove foods</IconButton>
                                         </div>
                                     </CardContent>
                                 </Card>

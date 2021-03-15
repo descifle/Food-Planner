@@ -38,38 +38,6 @@ body {
     }
 }
 
-.footer-inner_nav {
-    display: inline-block;
-    padding: 0;
-    
-    li {
-        display: inline-block;
-    }
-
-    a {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-family: ShopifySans, Helvetica, Arial, sans-serif;
-        font-weight: 700;
-        font-size: 1em;
-        margin-right: 1em;
-        color: #ffffff;
-        display: inline-block;
-    }
-}
-
-.icon {
-    color: white;
-}
-
-footer {
-    background-color: #114B5F;
-}
-
-.footer-inner_nav-container {
-    padding: 1rem 3rem;
-}
-
 a {
     text-decoration: none;
     color: white;
@@ -130,9 +98,66 @@ font-family: 'Quattrocento Sans', sans-serif;
     width: 100%
 }
 
+footer {
+    background-color: #114B5F;
+}
+
+.footer-inner_nav {
+    display: inline-block;
+    padding: 2rem 0;
+
+    h4 {
+        color: $secondary;
+        padding: 1rem 0;
+    }
+
+    a {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-family: ShopifySans, Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 1em;
+        margin-right: 1em;
+        color: #ffffff;
+        display: inline-block;
+    }
+}
+
+.footer-items {
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+        color: #b6babf
+    }
+    transition: color .1s ease-in-out;
+}
+
+.footer-inner_nav-container {
+    padding: 1rem 3rem;
+}
+
+.copy {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: .93rem;
+    color: #b6babf;
+    letter-spacing: unset;
+
+    span {
+        margin-left: 1rem;
+        cursor: pointer;
+    }
+}
+
 .icon {
-    color: purple;
+    margin-right: .5rem;
+    color: #0e76a8;
+    // border-radius: 50%;
     background-color: white;
+
+    &:hover {
+        background-color: #b6babf;
+    }
 }
 
 @media(min-width: 40rem) {

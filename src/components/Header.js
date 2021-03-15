@@ -1,10 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { AppBar, IconButton, Toolbar, Typography, Button } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
 import logo from '../assets/logo.png'
 import useStyles from '../css/styles'
-import MenuIcon from '@material-ui/icons/Menu'
 import GoogleAuth from './auth/GoogleAuth'
 
 

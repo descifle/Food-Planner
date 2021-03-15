@@ -7,7 +7,7 @@ const Footer = () => {
         <footer>
             <Container className="footer-inner">
                 <div>
-                <Typography variant="h3" style={{ color: 'white'}}>SITEMAP</Typography>
+                <Typography variant="h3" style={{ color: 'white', fontFamily: 'inherit'}}>SITEMAP</Typography>
                     {/* <nav>
                         <ul className="footer-inner_nav">
                             <li></li>
@@ -15,20 +15,18 @@ const Footer = () => {
                     </nav> */}
                 </div>
                 <hr />
-                <Grid container >
+                <Grid className="footer-inner_nav" container >
                     <Grid item xs={12} sm={3}>
-                        <Typography variant="h4"></Typography>
-                        <h4>Food Planner</h4>
-                        <Typography>about</Typography>
-                        <Typography>our vision</Typography>
+                        <Typography variant="h4">Food Planner</Typography>
+                        <Typography className="footer-items" variant="subtitle2">about</Typography>
+                        <Typography className="footer-items" variant="subtitle2">our vision</Typography>
                     </Grid>
                     <Grid item xs={12} sm={3}>
-                        <Typography variant="h4"></Typography>
-                        <h4>Account</h4>
-                        <Typography>create</Typography>
-                        <Typography>manage</Typography>
-                        <Typography>delete data</Typography>
-                        <Typography>your information</Typography>
+                        <Typography variant="h4">Account</Typography>
+                        <Typography className="footer-items" variant="subtitle2">create</Typography>
+                        <Typography className="footer-items" variant="subtitle2">manage</Typography>
+                        <Typography className="footer-items" variant="subtitle2">delete data</Typography>
+                        <Typography className="footer-items" variant="subtitle2">your information</Typography>
                     </Grid>
                 </Grid>
                 <hr />
@@ -37,7 +35,7 @@ const Footer = () => {
                         <a href="https://www.facebook.com"><Facebook className="icon" /></a>
                         <a href="https://www.linkedIn.com"><LinkedIn className="icon" /></a>
                     </span> 
-                    <div><span>Terms of Service</span> <span>Privacy Policy</span> <span>Descifle&#8482; </span><span>privacy policy etc</span></div>
+                    <div className="copy"><span>Terms of Service</span> <span>Privacy Policy</span> <span>Descifle&#8482; </span></div>
                 </div>
             </Container>
         </footer>
