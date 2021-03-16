@@ -187,7 +187,7 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
                                             <Modal modalOpen={updateOpen} modalClose={handleModalClose} handleSubmit={updateFood} action={'update-food'} foods={foods} />
                                             <IconButton style={{color: 'orange'}} onClick={() => handleClick('update-food')}><AddToPhotosIcon />Update food</IconButton>
                                             <Modal modalOpen={viewOpen} modalClose={handleModalClose} action={'view-food'} foods={foods} />
-                                            <IconButton onClick={viewFoods}><VisibilityIcon />View Foods</IconButton>
+                                            <IconButton style={{color: 'green'}} onClick={viewFoods}><VisibilityIcon />View Foods</IconButton>
                                             <Modal modalOpen={removeOpen} modalClose={handleModalClose} handleSubmit={removeFood} action={'remove-food'} foods={foods}/>
                                             <IconButton style={{color: 'red'}} onClick={() => handleClick('remove-food')}><DeleteIcon />Remove foods</IconButton>
                                         </div>
