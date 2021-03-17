@@ -105,7 +105,7 @@ const MyModal = ({modalOpen, modalClose, handleSubmit, action, foods}) => {
                      />
                     <TextField 
                     className="create-input"
-                    id="outlined-basic" 
+                    id="calories" 
                     label="Calories"
                     type="number"
                     variant="outlined"
