@@ -1,26 +1,64 @@
 import React from 'react'
-import { Container, List, ListItem, ListItemText, Typography, FormControl, TextField, Button } from '@material-ui/core'
+import { Container, List, ListItem, ListItemText, Typography, TextField, Button } from '@material-ui/core'
 import Header from './Header'
 import Footer from './Footer'
+import axios from 'axios'
 
 const AccountManage = () => {
 
     const [user, setUser] = React.useState({username:'user', id: 'unknown'})
+    const [calories, setCalories] = React.useState(0)
     const [currentPassword, setCurrentPassword] = React.useState('')
     const [password, setpassword] = React.useState('')
     const [confirmPassword, setConfirmPassword] = React.useState('')
 
+    React.useEffect(() => {
+        if(localStorage.getItem('malfease') === null || localStorage.getItem('malfease1') === null) {
+            window.location.pathname = '/'
+        }
+    })
 
     React.useEffect(() => {
         if(localStorage.getItem('malfease') !== null || undefined) {
+
+            const id = localStorage.getItem('malfease')
+            const username =  localStorage.getItem('malfease1')
+
             setUser({
-                id: localStorage.getItem('malfease'),
-                username:  localStorage.getItem('malfease1')
+                id,
+                username
             })
+            
+            const getData = () => {
+                axios.get('http://localhost:3001/user/getcalories', {
+                params: {
+                    mxdata: id,
+                    username: username,
+                    id: id
+                },
+                withCredentials: true
+                }).then(res => {
+                    if(res.status === 200 && res.data.calories !== null) {
+                        setCalories(res.data.calories) 
+                    } else {
+                        return
+                    }
+                })
+            }
+
+            getData()
+            
         }
     }, [])
 
-    console.log(user)
+    const updateCalories = (e) => {
+        e.preventDefault()
+
+        axios.patch('http://localhost:3001/user/updatecalories', {
+            calories: calories,
+            ...user
+        })
+    }
 
     const updatePassword = (e) => {
         e.preventDefault()
@@ -61,6 +99,17 @@ const AccountManage = () => {
                             update daily calories goal.
                         </ListItemText>
                     </ListItem>
+                    <form onSubmit={updateCalories} >
+                            <TextField
+                                label="daily calories"
+                                type="number"
+                                variant="standard"
+                                helperText={'new password'}
+                                value={calories}
+                                onChange={(e) => {setCalories(e.target.value)}}
+                                />
+                            <Button type="submit" variant="contained">update calories</Button>
+                        </form>
                     </List>
                     <List>
                     <ListItem aria-label="update user information">

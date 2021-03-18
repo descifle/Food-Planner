@@ -8,13 +8,24 @@ import GoogleAuth from './auth/GoogleAuth'
 
 
 
-const Header = ({ screenSize, malfease }) => {
+const Header = ({ screenSize, malfease, }) => {
 
     const classes = useStyles()
+    console.log(window.location.pathname)
 
     // create a popper for when sign in is clicked to have google sign in and regular sign in
     const renderAuth = () => {
-        // console.log(malfease)
+        if(localStorage.getItem('malfease') !== null || localStorage.getItem('malfease1') !== null) {
+            return (
+                <React.Fragment>
+                    {window.location.pathname !== '/food-planner' ? 
+                    <Link to="food-planner"><Button style={{ marginRight: '.5rem',fontFamily: "inherit", fontSize: 'inherit'}} variant="contained">Food</Button></Link> :
+                    null
+                    }
+                    <GoogleAuth />
+                </React.Fragment>
+            )
+        }
         if(malfease.isNormalSignedIn === true || malfease.isSignedIn === true) {
             return (
                 <React.Fragment>

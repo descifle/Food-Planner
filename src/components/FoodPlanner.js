@@ -23,10 +23,10 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
     const [viewOpen, setViewOpen] = useState(false)
     const [removeOpen, setRemoveOpen] = useState(false)
     const [userCalories, setUserCalories] = useState(0)
+    const [myCalories, setMyCalories] = useState(0)
     const [user] = useState({id: localStorage.getItem('malfease'), userName: localStorage.getItem('malfease1')})
 
     useEffect(() => {
-        const guid = localStorage.getItem('malfeaseg')
         const id = localStorage.getItem('malfease')
         const name = localStorage.getItem('malfease1')
 
@@ -34,13 +34,35 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
             viewFoods(true)
             localStorage.setItem('foods', JSON.stringify(foods))
             rSignIn({id, name})
-        } else if(guid !== null) {
-            rSignIn({id: guid, name: name})
         } else {
             window.location = '/'
         }
 
     }, [])
+
+    useEffect(() => {
+        const id = localStorage.getItem('malfease')
+        const name = localStorage.getItem('malfease1')
+
+        const getData = () => {
+            axios.get('http://localhost:3001/user/getcalories', {
+            params: {
+                mxdata: id,
+                username: name,
+                id: id
+            },
+            withCredentials: true
+            }).then(res => {
+                if(res.status === 200 && res.data.calories !== null) {
+                    setMyCalories(res.data.calories) 
+                } else {
+                    return
+                }
+            })
+        }
+
+        getData()
+    })
 
     useEffect(() => {
         setUserCalories(foods[foods.length - 1].allCalories)
@@ -216,11 +238,11 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
                                         Daily Goal
                                     </Typography>
                                     <Typography variant="h4" component="p">
-                                        1800
+                                        {myCalories}
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button color="primary" size="small">Add Foods</Button>
+                                    <Link to="/manage-account"><Button color="primary" size="small">change daily goals</Button></Link>
                                 </CardActions>
                             </Card>
                             </Grid>
