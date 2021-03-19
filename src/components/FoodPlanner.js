@@ -32,7 +32,7 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
 
         if(user.id !== null) {
             viewFoods(true)
-            localStorage.setItem('foods', JSON.stringify(foods))
+            // localStorage.setItem('foods', JSON.stringify(foods))
             rSignIn({id, name})
         } else {
             window.location = '/'
@@ -62,7 +62,7 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
         }
 
         getData()
-    })
+    }, [])
 
     useEffect(() => {
         setUserCalories(foods[foods.length - 1].allCalories)

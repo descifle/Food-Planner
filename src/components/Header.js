@@ -11,9 +11,7 @@ import GoogleAuth from './auth/GoogleAuth'
 const Header = ({ screenSize, malfease, }) => {
 
     const classes = useStyles()
-    console.log(window.location.pathname)
 
-    // create a popper for when sign in is clicked to have google sign in and regular sign in
     const renderAuth = () => {
         if(localStorage.getItem('malfease') !== null || localStorage.getItem('malfease1') !== null) {
             return (

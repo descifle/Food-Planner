@@ -8,6 +8,7 @@ const AccountManage = () => {
 
     const [user, setUser] = React.useState({username:'user', id: 'unknown'})
     const [calories, setCalories] = React.useState(0)
+    const [changedCalories, setChangedCalories] = React.useState(0)
     const [currentPassword, setCurrentPassword] = React.useState('')
     const [password, setpassword] = React.useState('')
     const [confirmPassword, setConfirmPassword] = React.useState('')
@@ -54,31 +55,45 @@ const AccountManage = () => {
     const updateCalories = (e) => {
         e.preventDefault()
 
-        axios.patch('http://localhost:3001/user/updatecalories', {
-            calories: calories,
+        if(calories !== changedCalories) {
+            axios.patch('http://localhost:3001/user/updatecalories', {
+            calories: changedCalories,
             ...user
-        })
+            })
+            setChangedCalories('new')
+        }
     }
 
     const updatePassword = (e) => {
         e.preventDefault()
-        if(currentPassword.length > 3) {
-            console.log('current is 3')
-        } else {
-            return
-        }
+        // if(currentPassword.length > 3) {
+        //     console.log('current is 3')
+        // } else {
+        //     return
+        // }
 
-        if(password.length > 3) {
-            console.log('pass is 3')
-        } else {
-            return
-        }
+        // if(password.length > 3) {
+        //     console.log('pass is 3')
+        // } else {
+        //     return
+        // }
 
-        if(confirmPassword.length > 3) {
-            console.log('confirm is 3')
-        } else {
-            return
-        }
+        // if(confirmPassword.length > 3) {
+        //     console.log('confirm is 3')
+        // } else {
+        //     return
+        // }
+
+       if(confirmPassword === password) {
+        axios.patch('http://localhost:3001/user/updatepassword', {
+            newPassword: confirmPassword,
+            password: currentPassword,
+            ...user
+        })
+        setpassword('')
+        setCurrentPassword('')
+        setConfirmPassword('')
+       }
     }
 
     const renderAccount = () => {
@@ -105,8 +120,8 @@ const AccountManage = () => {
                                 type="number"
                                 variant="standard"
                                 helperText={'new password'}
-                                value={calories}
-                                onChange={(e) => {setCalories(e.target.value)}}
+                                value={changedCalories === 0 ? calories : changedCalories}
+                                onChange={(e) => {setChangedCalories(e.target.value)}}
                                 />
                             <Button type="submit" variant="contained">update calories</Button>
                         </form>
