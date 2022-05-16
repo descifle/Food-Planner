@@ -16,7 +16,7 @@ import Modal from './Modal'
 
 const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
 
-    const baseURL = 'http://localhost:3001'
+    const baseURL = process.env.baseURL || 'http://localhost'
 
     const [addOpen, setAddOpen] = useState(false)
     const [updateOpen, setUpdateOpen] = useState(false)
@@ -45,7 +45,7 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
         const name = localStorage.getItem('malfease1')
 
         const getData = () => {
-            axios.get('http://localhost:3001/user/getcalories', {
+            axios.get(`/user/getcalories`, {
             params: {
                 mxdata: id,
                 username: name,
@@ -70,17 +70,17 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
     
     const addFood = (data) => {
         const finalData = {...data, userID: user.id}
-        axios.post(`${baseURL}/add-food`, finalData).then(() => {
+        axios.post(`/add-food`, finalData).then(() => {
             viewFoods(true)
         })
     }
     const updateFood = (data) => {
         const finalData = {...data, userID: user.id}
-        axios.patch(`${baseURL}/update-food`, finalData)
+        axios.patch(`/update-food`, finalData)
     }
     const removeFood = (data) => {
         const finalData = {...data, userID: user.id}
-        axios.post(`${baseURL}/remove-food`, {
+        axios.post(`/remove-food`, {
             id: finalData.id
         }).then((res) => {
             if(res.status === 200 && res.data === 'thanks') {
@@ -92,7 +92,7 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
     }
 
     const viewFoods = (normal = false) => {
-        axios.get(`${baseURL}/view-foods`, {
+        axios.get(`/view-foods`, {
             params: {
                 userID: user.id
             }
@@ -182,12 +182,15 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
                                     <Typography variant="h2" color="textSecondary" gutterBottom>
                                         Today's Calories
                                     </Typography>
-                                    <Typography color="textSecondary">
-                                        lorem ipsum
-                                    </Typography>
-                                    <Typography variant="h4" component="p">
+                                    <Typography color={userCalories > myCalories ? 'initial' : 'secondary'} variant="h4" component="p">
                                         {
                                             foods[foods.length - 1].dailyCalories === null ? 0 : foods[foods.length - 1].dailyCalories
+                                        }
+                                    </Typography>
+                                    <Typography color="textSecondary">
+                                        {userCalories === 0 ? 'You have not added anything today' :
+                                            userCalories > myCalories ? `you are ${userCalories - myCalories} over goal`:
+                                            `You are within your goal of ${myCalories}`
                                         }
                                     </Typography>
                                 </CardContent>

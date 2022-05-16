@@ -50,12 +50,12 @@ const Landing = () => {
                             <span><Link to="/create-account">join now</Link></span>
                         </Grid>
                         <Grid className="landing-content-img" item xs={12} sm={5} >
-                            <img src={trackImage} alt="" />
+                            <img className="landing-img1" src={trackImage} alt="" />
                         </Grid>
                     </Grid>
                     <Grid className="landing-content_container" container justify="center" alignItems="center">
                         <Grid className="landing-content-img" item xs={12} sm={5} >
-                            <img src={manageImage} alt="" />
+                            <img className="landing-img2" src={manageImage} alt="" />
                         </Grid>
                         <Grid className="landing-content_secondary" item xs={12} sm={5} >
                         <Typography variant="h2">Manage</Typography>
@@ -74,7 +74,7 @@ const Landing = () => {
                             <span><Link to="/create-account">join now</Link></span>
                         </Grid>
                         <Grid className="landing-content-img" item xs={12} sm={5} >
-                            <img src={dietImage} alt="" />
+                            <img className="landing-img3" src={dietImage} alt="" />
                         </Grid>
                     </Grid>
                 </Grid>

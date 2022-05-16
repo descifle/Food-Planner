@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, List, ListItem, ListItemText, Typography, TextField, Button } from '@material-ui/core'
 import Header from './Header'
 import Footer from './Footer'
@@ -6,20 +6,22 @@ import axios from 'axios'
 
 const AccountManage = () => {
 
-    const [user, setUser] = React.useState({username:'user', id: 'unknown'})
-    const [calories, setCalories] = React.useState(0)
-    const [changedCalories, setChangedCalories] = React.useState(0)
-    const [currentPassword, setCurrentPassword] = React.useState('')
-    const [password, setpassword] = React.useState('')
-    const [confirmPassword, setConfirmPassword] = React.useState('')
+    const baseURL = process.env.baseURL || 'http://localhost'
 
-    React.useEffect(() => {
+    const [user, setUser] = useState({username:'user', id: 'unknown'})
+    const [calories, setCalories] = useState(0)
+    const [changedCalories, setChangedCalories] = useState(0)
+    const [currentPassword, setCurrentPassword] = useState('')
+    const [password, setpassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+
+    useEffect(() => {
         if(localStorage.getItem('malfease') === null || localStorage.getItem('malfease1') === null) {
             window.location.pathname = '/'
         }
     })
 
-    React.useEffect(() => {
+    useEffect(() => {
         if(localStorage.getItem('malfease') !== null || undefined) {
 
             const id = localStorage.getItem('malfease')
@@ -31,7 +33,7 @@ const AccountManage = () => {
             })
             
             const getData = () => {
-                axios.get('http://localhost:3001/user/getcalories', {
+                axios.get(`/user/getcalories`, {
                 params: {
                     mxdata: id,
                     username: username,
@@ -56,7 +58,7 @@ const AccountManage = () => {
         e.preventDefault()
 
         if(calories !== changedCalories) {
-            axios.patch('http://localhost:3001/user/updatecalories', {
+            axios.patch(`/user/updatecalories`, {
             calories: changedCalories,
             ...user
             })
@@ -85,7 +87,7 @@ const AccountManage = () => {
         // }
 
        if(confirmPassword === password) {
-        axios.patch('http://localhost:3001/user/updatepassword', {
+        axios.patch(`/user/updatepassword`, {
             newPassword: confirmPassword,
             password: currentPassword,
             ...user
