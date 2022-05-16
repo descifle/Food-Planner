@@ -57,13 +57,11 @@ const App = ({ getScreenSize }) => {
     return (
         <ThemeProvider theme={theme}>
             <Routes>
-                <main>
-                    <Route name="landing" path="/" exact component={Landing} />
-                    <Route name="food-planner" path="/food-planner" component={FoodPlanner} />
-                    <Route name="manage-account" path="/manage-account" component={AccountManage} />
-                    <Route name="create-account" path="/create-account" component={CreateAccount} />
-                    <Route name="login" path="/login" component={SignIn} />
-                </main>
+                    <Route name="landing" path="/" exact element={<Landing />} />
+                    <Route name="food-planner" path="/food-planner" element={<FoodPlanner />} />
+                    <Route name="manage-account" path="/manage-account" element={<AccountManage />} />
+                    <Route name="create-account" path="/create-account" element={<CreateAccount />} />
+                    <Route name="login" path="/login" element={<SignIn />} />
             </Routes>
         </ThemeProvider>
     )
