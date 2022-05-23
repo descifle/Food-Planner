@@ -2,11 +2,17 @@
 // font-family: 'Ovo', serif;
 // font-family: 'Quattrocento Sans', sans-serif;
 
-$main: #114B5F; $secondary: #1A936F; $background: #F5F7FA; $highlight: #ffdba6;
+$main: #114B5F; $secondary: #1A936F; $background: #F5F7FA; $highlight: #ffdba6; $offTextColor: #b3b3b3; $linkColor: #4573d2;
 
 body {
     margin: 0;
     background-color: $background;
+}
+
+//  Header
+
+h4 a {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 .auth {
@@ -28,22 +34,13 @@ body {
    text-align: center;
 }
 
-.footer-inner {
-    background-color: $main;
-    padding: 2rem 4rem !important;
-
-    hr {
-        // color: #ffdba6;
-        border: $highlight solid 1px;
-    }
-}
-
 a {
     text-decoration: none;
     color: white;
     cursor: pointer;
 }
 
+// auth
 .create-user {
     display:flex;
     justify-content: center;
@@ -54,6 +51,15 @@ a {
 
 .account-form_container {
     width: 90%;
+   
+    .defer {
+        margin: .4rem 0;
+        a {
+           
+            color: $linkColor;
+            text-decoration: underline;
+        }
+    }
 }
 
 .account-form {
@@ -70,6 +76,15 @@ font-family: 'Quattrocento Sans', sans-serif;
 .account-form_control {
     width: 100%;  
 }
+
+.google-auth {
+    img {
+        width: 1rem;
+        padding: .25rem;
+    }
+} 
+
+// end auth
 
 .create-input {
     margin: 1rem 0!important;
@@ -98,8 +113,20 @@ font-family: 'Quattrocento Sans', sans-serif;
     width: 100%
 }
 
+// footer 
+
 footer {
     background-color: #114B5F;
+}
+
+.footer-inner {
+    background-color: $main;
+    padding: 2rem 4rem !important;
+
+    hr {
+        // color: #ffdba6;
+        border: $highlight solid 1px;
+    }
 }
 
 .footer-inner_nav {
@@ -107,7 +134,7 @@ footer {
     padding: 2rem 0;
 
     h4 {
-        color: $secondary;
+        color: white;
         padding: 1rem 0;
     }
 
@@ -124,7 +151,7 @@ footer {
 }
 
 .footer-items {
-    color: white;
+    color: $offTextColor;
     cursor: pointer;
 
     &:hover {
@@ -161,10 +188,6 @@ footer {
 }
 
 @media(min-width: 40rem) {
-    .auth {
-        font-size: 1.2rem;
-        font-family: "Quattrocento Sans", sans-serif;
-    }
 
     .account-form_container {
         width: 25rem;

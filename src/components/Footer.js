@@ -6,27 +6,19 @@ const Footer = () => {
     return (
         <footer>
             <Container className="footer-inner">
-                <div>
-                <Typography variant="h3" style={{ color: 'white', fontFamily: 'inherit'}}>SITEMAP</Typography>
-                    {/* <nav>
-                        <ul className="footer-inner_nav">
-                            <li></li>
-                        </ul>
-                    </nav> */}
-                </div>
                 <hr />
                 <Grid className="footer-inner_nav" container >
                     <Grid item xs={12} sm={3}>
-                        <Typography variant="h4">Food Planner</Typography>
-                        <Typography className="footer-items" variant="subtitle2">about</Typography>
-                        <Typography className="footer-items" variant="subtitle2">our vision</Typography>
+                        <Typography variant="h4">Explore</Typography>
+                        <Typography className="footer-items" variant="subtitle2">About</Typography>
+                        <Typography className="footer-items" variant="subtitle2">Our Vision</Typography>
                     </Grid>
                     <Grid item xs={12} sm={3}>
-                        <Typography variant="h4">Account</Typography>
-                        <Typography className="footer-items" variant="subtitle2">create</Typography>
-                        <Typography className="footer-items" variant="subtitle2">manage</Typography>
-                        <Typography className="footer-items" variant="subtitle2">delete data</Typography>
-                        <Typography className="footer-items" variant="subtitle2">your information</Typography>
+                        <Typography variant="h4">Support</Typography>
+                        <Typography className="footer-items" variant="subtitle2">Create</Typography>
+                        <Typography className="footer-items" variant="subtitle2">Manage</Typography>
+                        <Typography className="footer-items" variant="subtitle2">Delete data</Typography>
+                        <Typography className="footer-items" variant="subtitle2">Your information</Typography>
                     </Grid>
                 </Grid>
                 <hr />

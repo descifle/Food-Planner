@@ -1,3 +1,5 @@
+// deprecated
+
 import { SIGN_IN, SIGN_OUT, RSIGN_IN, RSIGN_OUT } from '../actions/types'
 
 const INITIAL_STATE = {

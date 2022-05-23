@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { getFoods } from '../actions'
 import { Grid, Container, Typography, Card, CardActions, CardContent, Button, IconButton } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import { rSignIn } from '../actions'
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -14,9 +13,9 @@ import Footer from './Footer';
 import axios from 'axios'
 import Modal from './Modal'
 
-const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
+const FoodPlanner = ({ foods, getFoods, auth }) => {
 
-    const baseURL = process.env.baseURL || 'http://localhost'
+    // const baseURL = process.env.baseURL || 'http://localhost'
 
     const [addOpen, setAddOpen] = useState(false)
     const [updateOpen, setUpdateOpen] = useState(false)
@@ -24,16 +23,14 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
     const [removeOpen, setRemoveOpen] = useState(false)
     const [userCalories, setUserCalories] = useState(0)
     const [myCalories, setMyCalories] = useState(0)
-    const [user] = useState({id: localStorage.getItem('malfease'), userName: localStorage.getItem('malfease1')})
+    //const [user] = useState({id: localStorage.getItem('malfease'), userName: localStorage.getItem('malfease1')})
 
     useEffect(() => {
-        const id = localStorage.getItem('malfease')
-        const name = localStorage.getItem('malfease1')
+        const id = auth.userId
 
-        if(user.id !== null) {
+        if (!!id) {
             viewFoods(true)
-            // localStorage.setItem('foods', JSON.stringify(foods))
-            rSignIn({id, name})
+            localStorage.setItem('foods', JSON.stringify(foods))
         } else {
             window.location = '/'
         }
@@ -41,20 +38,19 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
     }, [])
 
     useEffect(() => {
-        const id = localStorage.getItem('malfease')
-        const name = localStorage.getItem('malfease1')
+        const id = auth.userId
 
         const getData = () => {
             axios.get(`/user/getcalories`, {
-            params: {
-                mxdata: id,
-                username: name,
-                id: id
-            },
-            withCredentials: true
+                params: {
+                    mxdata: id,
+                    username: auth.username,
+                    id: id
+                },
+                withCredentials: true
             }).then(res => {
-                if(res.status === 200 && res.data.calories !== null) {
-                    setMyCalories(res.data.calories) 
+                if (res.status === 200 && res.data.calories !== null) {
+                    setMyCalories(res.data.calories)
                 } else {
                     return
                 }
@@ -67,62 +63,61 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
     useEffect(() => {
         setUserCalories(foods[foods.length - 1].allCalories)
     }, [foods])
-    
+
     const addFood = (data) => {
-        const finalData = {...data, userID: user.id}
-        axios.post(`/add-food`, finalData).then(() => {
+        const finalData = { ...data, userId: auth.userId }
+        axios.post(`/api/food/add-food`, finalData).then(() => {
             viewFoods(true)
         })
     }
     const updateFood = (data) => {
-        const finalData = {...data, userID: user.id}
-        axios.patch(`/update-food`, finalData)
+        const finalData = { ...data, userId: auth.userId }
+        axios.patch(`/api/food/update-food`, finalData)
     }
     const removeFood = (data) => {
-        const finalData = {...data, userID: user.id}
-        axios.post(`/remove-food`, {
+        const finalData = { ...data, userId: auth.userId }
+        axios.post(`/api/food/remove-food`, {
             id: finalData.id
         }).then((res) => {
-            if(res.status === 200 && res.data === 'thanks') {
+            if (res.status === 200 && res.data === 'thanks') {
                 viewFoods(true)
                 // getFoods(foods.filter(food => food.id !== data.id))
             }
         })
-        
+
     }
 
     const viewFoods = (normal = false) => {
-        axios.get(`/view-foods`, {
+        axios.get(`/api/food/view-foods`, {
             params: {
-                userID: user.id
+                userId: auth.userId
             }
         })
-        .then((res) => {
-            if(res.status === 200) {
-                console.log(res.data)
-                if(res.data.length === 0) {
-                    getFoods([{
-                        allCalories: 0,
-                        calories: 0,
-                        dailyCalories: 0,
-                        id: 'no-id',
-                        title: 'no foods yet'
-                    }])
+            .then((res) => {
+                if (res.status === 200) {
+                    if (res.data.length === 0) {
+                        getFoods([{
+                            allCalories: 0,
+                            calories: 0,
+                            dailyCalories: 0,
+                            id: 'no-id',
+                            title: 'no foods yet'
+                        }])
+                    } else {
+                        getFoods(res.data)
+                    }
+                    if (normal !== true) {
+                        setViewOpen(true)
+                    }
                 } else {
-                    getFoods(res.data)
+                    console.log('base draw error')
                 }
-                if(normal !== true) {
-                    setViewOpen(true)
-                }
-            } else {
-                console.log('base draw error')
-            }
-        })
+            })
 
     }
 
     const handleClick = (action) => {
-        switch(action) {
+        switch (action) {
             case 'add-food':
                 setAddOpen(true)
                 break;
@@ -131,7 +126,7 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
                 break;
             case 'view-food':
                 setViewOpen(true)
-                break;    
+                break;
             case 'remove-food':
                 setRemoveOpen(true)
                 break;
@@ -139,9 +134,9 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
                 return action
         }
     }
-    
+
     const handleModalClose = (action) => {
-        switch(action) {
+        switch (action) {
             case 'add-food':
                 setAddOpen(false)
                 break;
@@ -150,7 +145,7 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
                 break;
             case 'view-food':
                 setViewOpen(false)
-                break;    
+                break;
             case 'remove-food':
                 setRemoveOpen(false)
                 break;
@@ -158,68 +153,69 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
                 return action
         }
     }
- 
-    if(malfease.isNormalSignedIn === true || malfease.isSignedIn === true) {
-            return (
-                <React.Fragment>
-                    <Header />
-                    <Container>
-                    <Grid container>
-                        <Grid style={{ paddingTop: '2rem' }} item xs={12} sm={12}>
-                            <Card>
+
+    return (
+        <React.Fragment>
+            <Header />
+            <Container>
+                <Grid container>
+                    <Grid style={{ paddingTop: '2rem' }} item xs={12} sm={12}>
+                        <Card>
                             <CardContent>
-                                <div style={{ marginLeft: 'auto'}}>
-                                    welcome back {user.userName}
+                                <div style={{ marginLeft: 'auto' }}>
+                                    welcome back {auth.username}
                                 </div>
-                                <Button variant="outlined" ><Link style={{ color: 'inherit' }} to="/manage-account">Manage Account</Link></Button>
+                                <Link style={{ color: 'inherit' }} to="/manage-account">
+                                    <Button variant="outlined">Manage Account</Button>
+                                </Link>
                             </CardContent>
-                            </Card>
-                            
-                        </ Grid>
-                        <Grid className="daily-info" item xs={12} sm={4}>
-                            <Card >
-                                <CardContent>
-                                    <Typography variant="h2" color="textSecondary" gutterBottom>
-                                        Today's Calories
-                                    </Typography>
-                                    <Typography color={userCalories > myCalories ? 'initial' : 'secondary'} variant="h4" component="p">
-                                        {
-                                            foods[foods.length - 1].dailyCalories === null ? 0 : foods[foods.length - 1].dailyCalories
-                                        }
-                                    </Typography>
-                                    <Typography color="textSecondary">
-                                        {userCalories === 0 ? 'You have not added anything today' :
-                                            userCalories > myCalories ? `you are ${userCalories - myCalories} over goal`:
+                        </Card>
+
+                    </ Grid>
+                    <Grid className="daily-info" item xs={12} sm={4}>
+                        <Card >
+                            <CardContent>
+                                <Typography variant="h2" color="textSecondary" gutterBottom>
+                                    Today's Calories
+                                </Typography>
+                                <Typography color={userCalories > myCalories ? 'initial' : 'secondary'} variant="h4" component="p">
+                                    {
+                                        foods[foods.length - 1].dailyCalories === null ? 0 : foods[foods.length - 1].dailyCalories
+                                    }
+                                </Typography>
+                                <Typography color="textSecondary">
+                                    {userCalories === 0 ? 'You have not added anything today' :
+                                        userCalories > myCalories ? `you are ${userCalories - myCalories} over goal` :
                                             `You are within your goal of ${myCalories}`
-                                        }
+                                    }
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button color="primary" size="small">Learn More</Button>
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                    <Grid className="quick-links" container item xs={12} sm={8}>
+                        <Grid item xs={12} sm={12}>
+                            <Card  >
+                                <CardContent>
+                                    <Typography variant="h4" color="textSecondary" gutterBottom>
+                                        Manage Foods
                                     </Typography>
+                                    <div>
+                                        <Modal modalOpen={addOpen} modalClose={handleModalClose} handleSubmit={addFood} action={'add-food'} />
+                                        <IconButton style={{ color: 'green' }} onClick={() => handleClick('add-food')}><AddBoxIcon />Add food</IconButton>
+                                        <Modal modalOpen={updateOpen} modalClose={handleModalClose} handleSubmit={updateFood} action={'update-food'} foods={foods} />
+                                        <IconButton style={{ color: 'orange' }} onClick={() => handleClick('update-food')}><AddToPhotosIcon />Update food</IconButton>
+                                        <Modal modalOpen={viewOpen} modalClose={handleModalClose} action={'view-food'} foods={foods} />
+                                        <IconButton style={{ color: 'green' }} onClick={viewFoods}><VisibilityIcon />View Foods</IconButton>
+                                        <Modal modalOpen={removeOpen} modalClose={handleModalClose} handleSubmit={removeFood} action={'remove-food'} foods={foods} />
+                                        <IconButton style={{ color: 'red' }} onClick={() => handleClick('remove-food')}><DeleteIcon />Remove foods</IconButton>
+                                    </div>
                                 </CardContent>
-                                <CardActions>
-                                    <Button color="primary" size="small">Learn More</Button>
-                                </CardActions>
                             </Card>
                         </Grid>
-                        <Grid className="quick-links" container item xs={12} sm={8}>
-                            <Grid item xs={12} sm={12}>
-                                <Card  >
-                                    <CardContent>
-                                        <Typography variant="h4" color="textSecondary" gutterBottom>
-                                        Manage Foods
-                                        </Typography>
-                                        <div>
-                                            <Modal modalOpen={addOpen} modalClose={handleModalClose} handleSubmit={addFood} action={'add-food'} />
-                                            <IconButton  style={{color: 'green'}} onClick={() => handleClick('add-food')}><AddBoxIcon />Add food</IconButton>
-                                            <Modal modalOpen={updateOpen} modalClose={handleModalClose} handleSubmit={updateFood} action={'update-food'} foods={foods} />
-                                            <IconButton style={{color: 'orange'}} onClick={() => handleClick('update-food')}><AddToPhotosIcon />Update food</IconButton>
-                                            <Modal modalOpen={viewOpen} modalClose={handleModalClose} action={'view-food'} foods={foods} />
-                                            <IconButton style={{color: 'green'}} onClick={viewFoods}><VisibilityIcon />View Foods</IconButton>
-                                            <Modal modalOpen={removeOpen} modalClose={handleModalClose} handleSubmit={removeFood} action={'remove-food'} foods={foods}/>
-                                            <IconButton style={{color: 'red'}} onClick={() => handleClick('remove-food')}><DeleteIcon />Remove foods</IconButton>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={6}>
                             <Card className="m-placeholder">
                                 <CardContent>
                                     <Typography variant="h2" color="textSecondary" gutterBottom>
@@ -233,8 +229,8 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
                                     <Button color="primary" size="small">Add Foods</Button>
                                 </CardActions>
                             </Card>
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
                             <Card className="m-placeholder">
                                 <CardContent>
                                     <Typography variant="h2" color="textSecondary" gutterBottom>
@@ -248,31 +244,21 @@ const FoodPlanner = ({foods, rSignIn, getFoods, malfease}) => {
                                     <Link to="/manage-account"><Button color="primary" size="small">change daily goals</Button></Link>
                                 </CardActions>
                             </Card>
-                            </Grid>
                         </Grid>
                     </Grid>
-                </Container>
-                <Footer />
-                </React.Fragment>
-            )
-        } else {
-            return (
-                <React.Fragment>
-                    <Header />
-                    <div>...Loading</div>
-                    <Footer />
-                </React.Fragment>
-            )
-        }
-    }
+                </Grid>
+            </Container>
+            <Footer />
+        </React.Fragment>
+    )
+}
 
 const mapStateToProps = (state) => {
 
-    // console.log(state)
     return {
         foods: state.allFoods,
-        malfease: state.auth
+        auth: state.auth
     }
 }
 
-export default connect(mapStateToProps, { getFoods, rSignIn })(FoodPlanner)
+export default connect(mapStateToProps, { getFoods })(FoodPlanner)

@@ -4,11 +4,9 @@ import Header from './Header'
 import Footer from './Footer'
 import axios from 'axios'
 
-const AccountManage = () => {
+const AccountManage = ({ auth }) => {
 
     const baseURL = process.env.baseURL || 'http://localhost'
-
-    const [user, setUser] = useState({username:'user', id: 'unknown'})
     const [calories, setCalories] = useState(0)
     const [changedCalories, setChangedCalories] = useState(0)
     const [currentPassword, setCurrentPassword] = useState('')
@@ -16,28 +14,14 @@ const AccountManage = () => {
     const [confirmPassword, setConfirmPassword] = useState('')
 
     useEffect(() => {
-        if(localStorage.getItem('malfease') === null || localStorage.getItem('malfease1') === null) {
-            window.location.pathname = '/'
-        }
-    })
-
-    useEffect(() => {
         if(localStorage.getItem('malfease') !== null || undefined) {
 
-            const id = localStorage.getItem('malfease')
-            const username =  localStorage.getItem('malfease1')
-
-            setUser({
-                id,
-                username
-            })
-            
             const getData = () => {
                 axios.get(`/user/getcalories`, {
                 params: {
-                    mxdata: id,
-                    username: username,
-                    id: id
+                    mxdata: auth.userId,
+                    username: auth.username,
+                    id: auth.userId
                 },
                 withCredentials: true
                 }).then(res => {
@@ -48,6 +32,8 @@ const AccountManage = () => {
                     }
                 })
             }
+            
+            
 
             getData()
             
@@ -60,7 +46,7 @@ const AccountManage = () => {
         if(calories !== changedCalories) {
             axios.patch(`/user/updatecalories`, {
             calories: changedCalories,
-            ...user
+            ...auth
             })
             setChangedCalories('new')
         }
@@ -90,7 +76,7 @@ const AccountManage = () => {
         axios.patch(`/user/updatepassword`, {
             newPassword: confirmPassword,
             password: currentPassword,
-            ...user
+            ...auth
         })
         setpassword('')
         setCurrentPassword('')
@@ -107,7 +93,7 @@ const AccountManage = () => {
                     <ListItem aria-label="user information">
                         <ListItemText>
                             <Typography variant="h4">
-                            Manage <Typography color="primary" variant="inherit">{user.username}'s</Typography> account
+                            Manage <Typography color="primary" variant="inherit">{auth.username}'s</Typography> account
                             </Typography>
                         </ListItemText>
                     </ListItem>

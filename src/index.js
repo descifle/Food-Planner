@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client';
 import App from  './components/App'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -13,11 +13,14 @@ const store = createStore(
     composeEnhancers(applyMiddleware(reduxThunk))
 )
 
-
-ReactDOM.render(
-        <Provider store={store}>
+const container = document.getElementById("root")
+const root = createRoot(container)
+root.render(
+    <Provider store={store}>
             <BrowserRouter>
                 <App />
             </BrowserRouter>
-        </Provider>
-    , document.querySelector('#root'))
+    </Provider>
+)
+
+

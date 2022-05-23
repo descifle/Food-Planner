@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux'
-import authReducer from './authReducer'
 import screenSizeReducer from './screenSizeReducer'
 import foodsReducer from './foodsReducer'
+import userReducer from './userReducer'
 
 export default combineReducers({
-    auth: authReducer,
+    auth: userReducer,
     screenSize: screenSizeReducer,
-    allFoods: foodsReducer,
-    basic: () => 'hello'
+    allFoods: foodsReducer
 })
